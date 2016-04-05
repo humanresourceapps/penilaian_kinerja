@@ -309,8 +309,8 @@
                             <div class="row">
                                 <!-- Main Title (hidden on small devices for the statistics to fit) -->
                                 <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                                    <h1>Welcome <strong>Admin</strong><br>
-                                    <small>Silahkan gunakan menu sesuai kebutuhan anda!</small></h1>
+                                    <h1>  <strong>Master Pegawai</strong><br>
+                                    <small>Menu ini berisi data master pegawai</small></h1>
                                 </div>
                                 <!-- END Main Title -->
 
@@ -320,108 +320,61 @@
                                           </div>
                     <!-- END Dashboard Header -->
 
-                    <!-- Mini Top Stats Row -->
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_pegawai_view.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
-                                        <i class="fa fa-file-text"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                         <strong>Master Pegawai</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
+                    <!-- Datatables Content -->
+                    <div class="block full">
+                        <div class="block-title">
+                            <h2><strong>Table Pegawai</strong></h2>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="page_comp_charts.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                        <i class="gi gi-usd"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                          <strong>Master User</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="page_ready_inbox.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
-                                        <i class="gi gi-envelope"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                        5 <strong>Messages</strong>
-                                        <small>Support Center</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="page_comp_gallery.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
-                                        <i class="gi gi-picture"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                        +30 <strong>Photos</strong>
-                                        <small>Gallery</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6">
-                            <!-- Widget -->
-                            <a href="page_comp_charts.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background animation-fadeIn">
-                                        <i class="gi gi-wallet"></i>
-                                    </div>
-                                    <div class="pull-right">
-                                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-                                        <span id="mini-chart-sales"></span>
-                                    </div>
-                                    <h3 class="widget-content animation-pullDown visible-lg">
-                                        Latest <strong>Sales</strong>
-                                        <small>Per hour</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6">
-                            <!-- Widget -->
-                            <a href="page_widgets_stats.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background animation-fadeIn">
-                                        <i class="gi gi-crown"></i>
-                                    </div>
-                                    <div class="pull-right">
-                                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-                                        <span id="mini-chart-brand"></span>
-                                    </div>
-                                    <h3 class="widget-content animation-pullDown visible-lg">
-                                        Our <strong>Brand</strong>
-                                        <small>Popularity over time</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
+
+
+                        
+                        
+                        <div class="table-responsive">
+                            <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Gender</th>
+                                        <th>Jabatan</th>
+                                        <th class="text-center">Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                include "config.php";
+	                        	$sql = "select * from tab_pegawai";
+	                        	$exsql = mysql_query($sql);
+	                        	$no=1;
+	                        	while($row = mysql_fetch_array($exsql)){
+	                        	?>
+
+                                    <tr>
+                                        <td class="text-center"><?php echo $no;?></td>
+                                        <td><?php echo $row['nama']; ?></td>
+                                        <td><?php echo $row['tanggal_masuk']; ?></td>
+                                        <td><?php echo $row['gender']; ?></td>
+                                        <td><?php echo $row['id_jabatan']; ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                                                <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                <?php
+                                $no++;
+                            	}
+                                ?>
+                                    
+                                     
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <!-- END Mini Top Stats Row -->
+                    <!-- END Datatables Content -->
 
                     <!-- Widgets Row -->
                     
@@ -478,8 +431,12 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/app.js"></script>
 
+      
+ 
+
         <!-- Load and execute javascript code used only in this page -->
-        <script src="assets/js/pages/login.js"></script>
-        <script>$(function(){ Login.init(); });</script>
+        <script src="assets/js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
     </body>
 </html>
