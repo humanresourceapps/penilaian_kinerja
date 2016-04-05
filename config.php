@@ -7,7 +7,7 @@ kosong = password server
 */
 $conn = mysql_connect("localhost","root","");
 //milih database
-$db = mysql_select_db("kinerja",$conn);
+$db = mysql_select_db("penilaian_karyawan",$conn);
 
 if(!$conn OR !$db){
 	echo "database not exist or connection_aborted";
