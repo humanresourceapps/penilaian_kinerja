@@ -1,3 +1,6 @@
+<?php
+include "user_cek.php";
+?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
@@ -290,6 +293,9 @@
                                     <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a>
                                     <a href="logout.php"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                 </li>
+                                <li>
+                                     <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> <?php echo $_SESSION['username']; ?></a>
+                                </li>
                                 <li class="dropdown-header text-center">Pro UI</li>
                                  
                             </ul>
@@ -326,6 +332,10 @@
                             <h2><strong>Table Pegawai</strong></h2>
                         </div>
 
+                        <a href="master_pegawai_add.php" class="btn btn-primary"> Tambah Data</a>
+                        <br>
+                        &nbsp;
+
 
                         
                         
@@ -344,7 +354,8 @@
                                 <tbody>
                                 <?php
                                 include "config.php";
-	                        	$sql = "select * from tab_pegawai";
+	                        	$sql = "select a.*,b.nama_jabatan from tab_pegawai a 
+left join tab_jabatan b on b.id = a.id_jabatan ";
 	                        	$exsql = mysql_query($sql);
 	                        	$no=1;
 	                        	while($row = mysql_fetch_array($exsql)){
@@ -355,7 +366,7 @@
                                         <td><?php echo $row['nama']; ?></td>
                                         <td><?php echo $row['tanggal_masuk']; ?></td>
                                         <td><?php echo $row['gender']; ?></td>
-                                        <td><?php echo $row['id_jabatan']; ?></td>
+                                        <td><?php echo $row['nama_jabatan']; ?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
