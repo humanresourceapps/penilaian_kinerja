@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50527
+Source Server         : localhost
+Source Server Version : 50516
 Source Host           : localhost:3306
 Source Database       : penilaian_karyawan
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50516
 File Encoding         : 65001
 
-Date: 2016-04-05 17:02:05
+Date: 2016-04-15 22:16:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,6 +44,7 @@ DROP TABLE IF EXISTS `tab_kinerja`;
 CREATE TABLE `tab_kinerja` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `id_pegawai` int(10) DEFAULT NULL,
+  `id_komp_penilaian` int(10) DEFAULT NULL,
   `periode_penilaian_from` date DEFAULT NULL,
   `priode_penilaian_to` date DEFAULT NULL,
   `target` int(10) DEFAULT NULL,
@@ -61,8 +62,8 @@ CREATE TABLE `tab_kinerja` (
 -- ----------------------------
 -- Records of tab_kinerja
 -- ----------------------------
-INSERT INTO `tab_kinerja` VALUES ('4', '1234', '2015-03-10', '2016-03-10', '10', '100', 'pegawai bagus', 'aan', '2016-04-04 19:25:52', 'abdulgopar', '2016-04-04 20:10:31', '', '');
-INSERT INTO `tab_kinerja` VALUES ('5', '1234', '2015-04-20', '2016-04-20', '10', '100', 'pegawai bagus', 'aan', '2016-04-04 20:07:32', '', '', '', '');
+INSERT INTO `tab_kinerja` VALUES ('4', '1234', null, '2015-03-10', '2016-03-10', '10', '100', 'pegawai bagus', 'aan', '2016-04-04 19:25:52', 'abdulgopar', '2016-04-04 20:10:31', '', '');
+INSERT INTO `tab_kinerja` VALUES ('5', '1234', null, '2015-04-20', '2016-04-20', '10', '100', 'pegawai bagus', 'aan', '2016-04-04 20:07:32', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for `tab_komponen_penilaian`
@@ -70,7 +71,7 @@ INSERT INTO `tab_kinerja` VALUES ('5', '1234', '2015-04-20', '2016-04-20', '10',
 DROP TABLE IF EXISTS `tab_komponen_penilaian`;
 CREATE TABLE `tab_komponen_penilaian` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `nama_aspek_penilaian` varchar(50) DEFAULT NULL,
+  `nama_komp_penilaian` varchar(50) DEFAULT NULL,
   `user_insert` varchar(50) DEFAULT NULL,
   `date_insert` varchar(50) DEFAULT NULL,
   `user_update` varchar(50) DEFAULT NULL,
@@ -78,11 +79,13 @@ CREATE TABLE `tab_komponen_penilaian` (
   `user_delete` varchar(50) DEFAULT NULL,
   `date_delete` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tab_komponen_penilaian
 -- ----------------------------
+INSERT INTO `tab_komponen_penilaian` VALUES ('1', 'Absensi', null, null, null, null, null, null);
+INSERT INTO `tab_komponen_penilaian` VALUES ('2', 'Kerajinan', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `tab_pegawai`
@@ -107,14 +110,13 @@ CREATE TABLE `tab_pegawai` (
   `user_delete` varchar(255) DEFAULT NULL,
   `date_delete` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tab_pegawai
 -- ----------------------------
-INSERT INTO `tab_pegawai` VALUES ('1', 'Okki Setyawan', '2016-01-20', 'Jakarta', '1993-10-01', 'L', 'kp.rawa badung', '1', 'okkisetyawan@gmail.com', '089610595064', 'Y', 'okki', '2016-04-04 17:46:10', '', '', '', '');
-INSERT INTO `tab_pegawai` VALUES ('2', 'andi purtomo', '2015-02-09', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tab_pegawai` VALUES ('7', 'andipurnomo', '2015-08-10', 'jawa barat', '1990-08-20', 'L', 'JL.Rawa badak iv no.26', '2', 'andipurnomo@gmail.com', '083878941489', 'y', 'abdulgopar', '2016-04-04 18:11:54', 'reni', '', '', '');
+INSERT INTO `tab_pegawai` VALUES ('1', 'Okki Setyawan', '1993-10-01', 'Jakarta', '1993-10-01', 'P', ' Narogong ', '2', 'okkisetyawan@gmail.com', '08999999', 'Y', 'majid', '2016-04-12 19:40:18', null, null, null, null);
+INSERT INTO `tab_pegawai` VALUES ('2', 'Majid', '2016-04-01', 'Jakarta', '2016-04-28', 'L', 'JJ', '1', 'swr', '23', 'Y', 'majid', '2016-04-12 20:26:44', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `tab_user`
