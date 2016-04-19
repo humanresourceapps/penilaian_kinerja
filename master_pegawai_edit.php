@@ -341,7 +341,8 @@ include "user_cek.php";
                                 <!-- END Form Elements Title -->
                                 <?php
                                 include "config.php";
-                                $sql = "select * from tab_pegawai";
+                                $id = $_GET['id'];
+                                $sql = "select * from tab_pegawai where id = '$id' ";
                                 $exsql = mysql_query($sql);
                                 $data = mysql_fetch_array($exsql);
                                 ?>

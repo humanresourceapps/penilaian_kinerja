@@ -370,7 +370,7 @@ left join tab_jabatan b on b.id = a.id_jabatan ";
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a href="master_pegawai_edit.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-                                                <a href="master_pegawai_delete.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                                                <a href="master_pegawai_delete.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                                             </div>
                                         </td>
                                     </tr>
