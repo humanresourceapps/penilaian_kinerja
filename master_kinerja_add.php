@@ -1,3 +1,6 @@
+<?php
+include "user_cek.php";
+?>
 <!DOCTYPE html>
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
@@ -290,9 +293,11 @@
                                     <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a>
                                     <a href="logout.php"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                 </li>
-                                <li>
+
+                                 <li>
                                      <a href="#"><i class="fa fa-ban fa-fw pull-right"></i> <?php echo $_SESSION['username']; ?></a>
                                 </li>
+
                                 <li class="dropdown-header text-center">Pro UI</li>
                                  
                             </ul>
@@ -312,8 +317,8 @@
                             <div class="row">
                                 <!-- Main Title (hidden on small devices for the statistics to fit) -->
                                 <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                                    <h1>Welcome <strong>Admin</strong><br>
-                                    <small>Silahkan gunakan menu sesuai kebutuhan anda!</small></h1>
+                                    <h1><strong>Tambah Data kinerja</strong><br>
+                                    <small>Menu ini berfungsi untuk menambah data kinerja</small></h1>
                                 </div>
                                 <!-- END Main Title -->
 
@@ -323,169 +328,96 @@
                                           </div>
                     <!-- END Dashboard Header -->
 
-                    <!-- Mini Top Stats Row -->
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_pegawai_view.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
-                                        <i class="fa fa-file-text"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                         <strong>Master Pegawai</strong><br>
-                                        
-                                    </h3>
+                    <!-- Datatables Content -->
+                   <div class="row">
+                        <div class="col-md-12">
+                            <!-- Basic Form Elements Block -->
+                            <div class="block">
+                                <!-- Basic Form Elements Title -->
+                                <div class="block-title">
+                                    
+                                    <h2><strong>Form Tambah kinerja</strong></h2>
                                 </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_user_view.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                        <i class="gi gi-usd"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                          <strong>Master User</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
+                                <!-- END Form Elements Title -->
 
-                      
-                         <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_kinerja.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                        <i class="gi gi-usd"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                          <strong>Master Kinerja</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-
-                           <div class="col-sm-6 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_jabatan.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                        <i class="gi gi-usd"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                          <strong>Master jabatan</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
-                            </div>
+                                <!-- Basic Form Elements Content -->
+                                <form action="master_kinerja_proadd.php" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                             
-                            <div class="col-sm-8 col-lg-3">
-                            <!-- Widget -->
-                            <a href="master_komponen_penilaian.php" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-spring animation-fadeIn">
-                                        <i class="gi gi-usd"></i>
+                                   <div class="form-group">
+                                        <label class="col-md-3 control-label" for="example-text-input">Name Pegawai</label>
+                                        <div class="col-md-9">
+                                            <select id="example-select" name="nama_pegawai" class="form-control" size="1">
+                                                <option value="" selected="selected">--Pilih--</option>
+                                                  <?php
+                                                    include "config.php";
+                                                    $sql = "select * from tab_pegawai";
+                                                    $exsql = mysql_query($sql);
+                                                    while($row = mysql_fetch_array($exsql)){
+                                                        
+                                                    ?>
+                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama'];?></option>
+
+                                                    <?php
+                                                    }
+                                                    ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                          <strong>Master Komp Penilaian</strong><br>
-                                        
-                                    </h3>
-                                </div>
-                            </a>
+                                       
+
+                                      <div class="form-group">
+                                             <label class="col-md-3 control-label" for="example-text-input">Periode Penilaian From</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="example-datepicker2" name="periode_penilaian_from" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+                                            </div>
+                                        </div>
+                                       
+
+                                        <div class="form-group">
+                                             <label class="col-md-3 control-label" for="example-text-input">Periode Penilaian to</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="example-datepicker2" name="periode_penilaian_to" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                        <label class="col-md-3 control-label" for="example-text-input">Target</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="example-text-input" name="target" class="form-control" placeholder="Target">
+                                             
+                                        </div>
+
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label" for="example-text-input">Realisasi</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="example-text-input" name="realisasi" class="form-control" placeholder="Realisasi">
+                                             
+                                        </div>
+
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label" for="example-text-input">Keterangan</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="example-text-input" name="keterangan" class="form-control" placeholder="keterangan">
+                                             
+                                        </div>
+
+                                    </div>
+
+                                        <div class="form-group form-actions">
+                                        <div class="col-md-9 col-md-offset-3">
+                                            <button type="submit" class="btn btn-sm btn-primary"> Simpan </button>
+                                            <button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END Basic Form Elements Content -->
                             </div>
-
-                            
-                        <div class="col-sm-4 col-lg-3">
-                            <!-- Widget -->
-                            <a href="page_ready_inbox.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
-                                        <i class="gi gi-envelope"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                        5 <strong>Messages</strong>
-                                        <small>Support Center</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
+                            <!-- END Basic Form Elements Block -->
                         </div>
-                        <div class="col-sm-4 col-lg-3">
-                            <!-- Widget -->
-                            <a href="page_comp_gallery.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background-amethyst animation-fadeIn">
-                                        <i class="gi gi-picture"></i>
-                                    </div>
-                                    <h3 class="widget-content text-right animation-pullDown">
-                                        +30 <strong>Photos</strong>
-                                        <small>Gallery</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-4">
-                            <!-- Widget -->
-                            <a href="page_comp_charts.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background animation-fadeIn">
-                                        <i class="gi gi-wallet"></i>
-                                    </div>
-                                    <div class="pull-right">
-                                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-                                        <span id="mini-chart-sales"></span>
-                                    </div>
-                                    <h3 class="widget-content animation-pullDown visible-lg">
-                                        Latest <strong>Sales</strong>
-                                        <small>Per hour</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                        <div class="col-sm-6">
-                            <!-- Widget -->
-                            <a href="page_widgets_stats.html" class="widget widget-hover-effect1">
-                                <div class="widget-simple">
-                                    <div class="widget-icon pull-left themed-background animation-fadeIn">
-                                        <i class="gi gi-crown"></i>
-                                    </div>
-                                    <div class="pull-right">
-                                        <!-- Jquery Sparkline (initialized in js/pages/index.js), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
-                                        <span id="mini-chart-brand"></span>
-                                    </div>
-                                    <h3 class="widget-content animation-pullDown visible-lg">
-                                        Our <strong>Brand</strong>
-                                        <small>Popularity over time</small>
-                                    </h3>
-                                </div>
-                            </a>
-                            <!-- END Widget -->
-                        </div>
-                    </div>
-                    <!-- END Mini Top Stats Row -->
-
-                    <!-- Widgets Row -->
-                    
-                           
-                           
-
-                           
-                        </div>
-                    </div>
-                    <!-- END Widgets Row -->
-                </div>
-                <!-- END Page Content -->
 
                 <!-- Footer -->
                 <footer class="clearfix">
@@ -530,8 +462,12 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/app.js"></script>
 
+      
+ 
+
         <!-- Load and execute javascript code used only in this page -->
-        <script src="assets/js/pages/login.js"></script>
-        <script>$(function(){ Login.init(); });</script>
+        <script src="assets/js/pages/tablesDatatables.js"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
     </body>
 </html>

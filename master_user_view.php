@@ -326,6 +326,9 @@
 						<h2><strong>Table User</strong></h2>
 					</div>
 					
+                      <a href="master_user_add.php" class="btn btn-primary"> Tambah Data</a>
+                        <br>
+                        &nbsp;
 
 
 					<div class="table-responsive">
@@ -343,7 +346,8 @@
 							<tbody>
 								<?php
 								include "config.php";
-								$sql = "select * from tab_user";
+								$sql = "select a.*,b.nama from tab_user a 
+                                        left join tab_pegawai b on b.id = a.id_pegawai";
 								$exsql = mysql_query($sql);
 								$no=1;
 								while ($row = mysql_fetch_array($exsql)){
@@ -356,17 +360,19 @@
 										<td><?php echo $row['password']; ?></td>
 										<td><?php echo $row['level']; ?></td>
 										<td class="text-center">
-											<div class="btn-group">
-												<a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
-												<a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-											</div>
-										</td>
-									</tr>
+											  <div class="btn-group">
+                                                <a href="master_user_edit.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                                                <a href="master_user_delete.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                                                <a href="print_user.php?id=<?php echo $row['id'];?>" data-toggle="tooltip" title="Print" class="btn btn-xs btn-default"><i class="fa fa-print"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-								<?php
-								$no++;
-								}
-								?>
+                                <?php
+                                $no++;
+                                }
+                                ?>
+                                    
 
 							</tbody>
 						</table>
