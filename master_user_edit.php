@@ -394,11 +394,7 @@
                                                 <option value="" selected="selected">--Pilih--</option>
                                                 <option value="1" <?php if($row['level'] == 1){echo "selected=selected";}?> >Administrator</option>
                                                 <option value="2" <?php if($row['level'] == 2){echo "selected=selected";}?> >User</option>
-                                                 
-
-
-                                                  
-                                            </select>
+                                           </select>
                                         </div>
                                     </div>
 
@@ -412,11 +408,7 @@
 
                     <!-- END Datatables Content -->
 
-                    <!-- Widgets Row -->
-                    
-                           
-                           
-
+   
                            
                         </div>
                     </div>
