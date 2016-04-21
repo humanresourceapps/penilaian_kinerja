@@ -2,7 +2,8 @@
 
 ob_start();
 include "config.php";
- ?>
+include "user_cek.php";
+?>
 
  <page> 
  <h2 align="center">Laporan Data Pegawai</h2>
@@ -50,7 +51,7 @@ include "config.php";
   <tr>
     <td style="width:80%;">Alamat</td>
     <td>:</td>
-    <td><?php echo $row['alamat']; ?></td>
+    <td><?php echo $row['alamat']; ?>  &nbsp; &nbsp;</td>
   </tr>
   <tr>
     <td style="width:80%;">Jabatan</td>
@@ -65,7 +66,7 @@ include "config.php";
   <tr>
     <td style="width:80%;">Telp</td>
     <td>:</td>
-    <td><?php echo $row['no_telp']; ?></td>
+    <td><?php echo $row['no_telp'];  ?> &nbsp; &nbsp;</td>
   </tr>
  
  	  
